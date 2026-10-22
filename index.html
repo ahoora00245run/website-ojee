@@ -3,102 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دانشنامه جامع مایعات، تنش سطحی و جیوه</title>
+    <meta name="description" content="دانشنامه جامع بررسی فیزیک مایعات، تنش سطحی آب، پیوندهای هیدروژنی و ویژگی‌های شگفت‌انگیز جیوه به همراه انیمیشن و تصاویر.">
+    <meta name="keywords" content="تنش سطحی, آب, جیوه, فیزیک مایعات, دانشنامه آب, پیوند هیدروژنی">
     
-    <!-- تنظیمات سئو برای گوگل -->
-    <title>تنش سطحی آب چیست؟ بررسی علمی و مولکولی</title>
-    <meta name="description" content="آشنایی با پدیده تنش سطحی در آب، پیوندهای هیدروژنی بین مولکول‌های آب و علت شناور ماندن اجسام روی سطح آب.">
-    <meta name="keywords" content="تنش سطحی آب, مولکول آب, پیوند هیدروژنی, فیزیک آب, علوم پایه">
+    <!-- متاتگ گوگل -->
+    <meta name="google-site-verification" content="google7586a598284eb5c" />
 
     <style>
+        :root {
+            --bg-color: #f0f8ff;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --accent-color: #00838f;
+            --header-bg: linear-gradient(135deg, #0288d1, #26c6da);
+            --mercury-bg: linear-gradient(135deg, #37474f, #78909c);
+            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #4dd0e1;
+            --header-bg: linear-gradient(135deg, #004ecb, #00838f);
+            --mercury-bg: linear-gradient(135deg, #1c2327, #37474f);
+            --shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: background-color 0.4s, color 0.4s;
+        }
+
         body {
-            font-family: Tahoma, Arial, sans-serif;
-            background: linear-gradient(135deg, #e0f7fa, #80deea);
-            color: #333;
+            font-family: 'Tahoma', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            max-width: 700px;
-            width: 100%;
-            margin-top: 20px;
-        }
-        h1 {
-            font-size: 26px;
-            color: #006064;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        h2 {
-            font-size: 20px;
-            color: #00838f;
-            margin-top: 25px;
-            border-right: 4px solid #00acc1;
-            padding-right: 10px;
-        }
-        p {
-            font-size: 16px;
-            color: #455a64;
+            padding: 0;
             line-height: 1.8;
-            text-align: justify;
         }
-        .img-box {
+
+        /* دکمه تغییر نور (تم) */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            font-weight: bold;
+        }
+
+        header {
+            background: var(--header-bg);
+            color: white;
             text-align: center;
+            padding: 60px 20px;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 0.8s ease-in-out;
+        }
+
+        .card h2 {
+            color: var(--accent-color);
+            border-right: 5px solid var(--accent-color);
+            padding-right: 12px;
+            margin-top: 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             margin: 20px 0;
         }
-        .img-box img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .img-caption {
-            font-size: 13px;
-            color: #78909c;
-            margin-top: 8px;
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow);
         }
-        .highlight-box {
-            background-color: #e0f2f1;
-            border-right: 4px solid #00897b;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
+
+        /* بخش اختصاصی جیوه */
+        .mercury-section {
+            background: var(--mercury-bg);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .mercury-section h2 {
+            color: #eceff1;
+            border-right-color: #cfd8dc;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 تغییر نور (روز / شب)</button>
+
+    <header>
+        <h1>🌊 دانشنامه جامع مایعات و تنش سطحی</h1>
+        <p>سفری علمی به جهان مولکول‌ها، پدیده‌های فیزیکی و مایعات شگفت‌انگیز</p>
+    </header>
+
     <div class="container">
-        <h1>راز تنش سطحی آب؛ چرا قطرات آب گرد می‌شوند؟</h1>
-        
-        <p>آب یکی از شگفت‌انگیزترین ماده‌های روی زمین است. اگر به قطرات آب روی برگ گیاهان یا شیشه پنجره نگاه کنید، متوجه شکل کروی آن‌ها می‌شوید. این پدیده جذاب نتیجه نیرویی به نام <strong>تنش سطحی (Surface Tension)</strong> است.</p>
 
-        <div class="img-box">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Water_drop_on_a_leaf.jpg/800px-Water_drop_on_a_leaf.jpg" alt="قطره آب روی برگ و تنش سطحی">
-            <div class="img-caption">نمونه‌ای از تنش سطحی و شکل‌گیری قطره کروی آب روی برگ</div>
+        <!-- بخش اول: آب -->
+        <div class="card">
+            <h2>۱. آب؛ مایع حیات‌بخش و ساختار آن</h2>
+            <p>آب ($H_2O$) یکی از منحصر‌به‌فردترین مواد روی زمین است. هر مولکول آب از یک اتم اکسیژن و دو اتم هیدروژن تشکیل شده که با زاویه‌ای حدود ۱۰۴.۵ درجه به هم متصل شده‌اند. این ساختار قطبی باعث ایجاد <strong>پیوندهای هیدروژنی</strong> قوی بین مولکول‌ها می‌شود.</p>
+            
+            <div class="gallery">
+                <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=600&q=80" alt="قطره آب">
+                <img src="https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&w=600&q=80" alt="موج آب">
+            </div>
         </div>
 
-        <h2>مولکول‌های آب چطور این نیرو را می‌سازند؟</h2>
-        <p>هر مولکول آب ($H_2O$) از یک اتم اکسیژن و دو اتم هیدروژن تشکیل شده است. مولکول‌های آب تمایل شدیدی دارند که یکدیگر را بغل کنند و به هم بچسبند؛ به این جاذبه بین‌مولکولی، <strong>پیوند هیدروژنی</strong> می‌گویند.</p>
-
-        <p>مولکول‌هایی که در عمق آب قرار دارند از همه طرف توسط مولکول‌های دیگر احاطه شده و نیروهای آن‌ها همدیگر را خنثی می‌کنند. اما مولکول‌های لایه سطحی (بالایی) آب، چون مولکولی بالای سر خود ندارند، با قدرت بیشتری به مولکول‌های کناری و پایینی خود می‌چسبند. این چسبندگی محکمِ لایه رویی، مثل یک پوسته‌ی نامرئی و الاستیک روی سطح آب عمل می‌کند.</p>
-
-        <div class="highlight-box">
-            <p style="margin: 0;"><strong>آیا می‌دانید؟</strong> دلیل اینکه برخی حشرات کوچک می‌توانند به راحتی روی سطح آب راه بروند بدون اینکه غرق شوند، همین تنش سطحی و مقاومت لایه رویی آب است!</p>
+        <!-- بخش دوم: تنش سطحی -->
+        <div class="card">
+            <h2>۲. تنش سطحی (Surface Tension) چیست؟</h2>
+            <p>تنش سطحی یک ویژگی فیزیکی در مایعات است که باعث می‌شود لایه بیرونی مایع مانند یک پوسته الاستیک و نامرئی عمل کند. این پدیده به دلیل کشش نامتوازن مولکول‌های سطح مایع به سمت داخل ایجاد می‌شود.</p>
+            <p>💡 <strong>مثال‌های ملموس:</strong></p>
+            <ul>
+                <li>شناور ماندن حشرات (مانند آب‌پیمایان) روی سطح آب بدون غرق شدن.</li>
+                <li>گرد و کروی شدن قطرات آب روی برگ درختان یا شیشه ماشین.</li>
+                <li>شناور ماندن یک سوزن یا گیره کاغذ روی کاسه آب!</li>
+            </ul>
         </div>
 
-        <div class="img-box">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Water_strider_%28Gerris_lacustris%29_on_water.jpg/800px-Water_strider_%28Gerris_lacustris%29_on_water.jpg" alt="حشره روی سطح آب">
-            <div class="img-caption">راه رفتن حشره روی آب به دلیل نیروی تنش سطحی</div>
+        <!-- بخش سوم: آزمایش‌های جذاب -->
+        <div class="card">
+            <h2>۳. خلاصه آزمایش‌های جذاب با آب</h2>
+            <p>شما می‌توانید تنش سطحی آب را در خانه با روش‌های زیر آزمایش کنید:</p>
+            <ol>
+                <li><strong>آزمایش فلفل و صابون:</strong> کمی فلفل سیاه روی کاسه آب بپاشید. با زدن یک قطره مایع ظرفشویی به انگشتتان، فلفل‌ها به سرعت به اطراف فرار می‌کنند! (صابون تنش سطحی آب را می‌شکند).</li>
+                <li><strong>آزمایش سکه و قطره‌چکان:</strong> بررسی کنید چند قطره آب روی یک سکه جا می‌گیرد قبل از اینکه بریزد!</li>
+            </ol>
         </div>
+
+        <!-- بخش اختصاصی جیوه -->
+        <div class="mercury-section">
+            <span class="badge">عنصر شماره ۸۰ (Hg)</span>
+            <h2>🧪 بخش اختصاصی: جیوه (Mercury)؛ مایعی از جنس فلز!</h2>
+            <p>جیوه تنها فلزی است که در دمای اتاق به حالت مایع باقی می‌ماند. این عنصر شگفت‌انگیز دارای ویژگی‌های بسیار خاصی است:</p>
+            
+            <ul>
+                <li><strong>تنش سطحی فوق‌العاده بالا:</strong> تنش سطحی جیوه حدود ۶ برابر آب است! به همین دلیل قطرات جیوه کاملاً کروی باقی می‌مانند و اصلاً سطوح را خیس نمی‌کنند.</li>
+                <li><strong>چگالی بسیار بالا:</strong> چگالی جیوه ۱۳.۶ برابر آب است. یعنی یک لیتر جیوه حدود ۱۳.۶ کیلوگرم وزن دارد! حتی وزنه آهنی هم روی جیوه شناور می‌ماند.</li>
+                <li><strong>رفتار لوله‌های موئین:</strong> برعکس آب که در لوله‌های باریک بالا می‌رود، سطح جیوه پایین می‌رود و محدب می‌شود.</li>
+            </ul>
+
+            <div class="gallery">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Pouring_liquid_mercury.jpg/800px-Pouring_liquid_mercury.jpg" alt="مایع جیوه">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Liquid_Mercury.jpg/800px-Liquid_Mercury.jpg" alt="قطره‌های گرد جیوه">
+            </div>
+        </div>
+
     </div>
 
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+            }
+        }
+    </script>
 </body>
 </html>
