@@ -3,326 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دانشنامه جامع فیزیک مایعات و ساختار مولکولی</title>
-    <meta name="description" content="مرجع جامع بررسی فیزیک مایعات، تنش سطحی، ساختار مولکولی آب، جیوه، الکل و روغن به همراه انیمیشن و افکت‌های بلوری شیشه‌ای.">
+    <title>دانشنامه تخصصی فیزیک و ساختار مولکولی مایعات</title>
+    <meta name="description" content="دانشنامه تخصصی فیزیک مایعات، ساختار دقیق شیمیایی مولکول‌ها، تنش سطحی، جیوه و الکل با طراحی شیشه‌ای فوق‌بلوری.">
     <meta name="google-site-verification" content="google7586a598284eb5c" />
 
     <style>
         :root {
-            --bg-glass: rgba(255, 255, 255, 0.15);
-            --border-glass: rgba(255, 255, 255, 0.25);
-            --text-color: #ffffff;
-            --accent-color: #00f2fe;
-            --accent-glow: #4facfe;
-            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --glass-bg: rgba(15, 23, 42, 0.55);
+            --glass-card: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-glow: rgba(56, 189, 248, 0.35);
+            --text-main: #f8fafc;
+            --accent-cyan: #38bdf8;
+            --accent-blue: #3b82f6;
+            --blur-strength: blur(25px);
         }
 
         [data-theme="light"] {
-            --bg-glass: rgba(255, 255, 255, 0.75);
-            --border-glass: rgba(255, 255, 255, 0.4);
-            --text-color: #1a202c;
-            --accent-color: #0077b6;
-            --accent-glow: #00b4d8;
-            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --glass-bg: rgba(241, 245, 249, 0.65);
+            --glass-card: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-glow: rgba(14, 165, 233, 0.25);
+            --text-main: #0f172a;
+            --accent-cyan: #0284c7;
+            --accent-blue: #2563eb;
         }
 
         * {
             box-sizing: border-box;
-            transition: all 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
-            font-family: 'Tahoma', sans-serif;
+            font-family: 'Tahoma', 'Segoe UI', sans-serif;
             margin: 0;
             padding: 0;
-            color: var(--text-color);
-            line-height: 1.9;
-            /* پس‌زمینه علمی و پیشرفته */
-            background: linear-gradient(rgba(10, 15, 30, 0.85), rgba(10, 15, 30, 0.85)), 
-                        url('https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/abstract-science-molecule-background-graphic-art.jpg') no-repeat center center fixed;
-            background-size: cover;
+            color: var(--text-main);
+            line-height: 2;
             min-height: 100vh;
+            /* پس‌زمینه پیکسلی آبی، مشکی و سفید کاملاً آفلاین و پایدار */
+            background-color: #030712;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.12) 0%, transparent 60%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" fill="%23030712"/><rect x="0" y="0" width="16" height="16" fill="%230b1528"/><rect x="16" y="16" width="16" height="16" fill="%230b1528"/><rect x="0" y="0" width="2" height="2" fill="%23ffffff" opacity="0.15"/><rect x="16" y="16" width="2" height="2" fill="%2338bdf8" opacity="0.25"/></svg>');
+            background-attachment: fixed;
         }
 
-        /* دکمه تغییر نور */
-        .theme-btn {
+        /* دکمه تغییر تم بلوری */
+        .theme-toggle-btn {
             position: fixed;
             top: 20px;
             left: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--border-glass);
-            color: var(--text-color);
-            padding: 12px 22px;
-            border-radius: 50px;
+            background: var(--glass-card);
+            backdrop-filter: var(--blur-strength);
+            -webkit-backdrop-filter: var(--blur-strength);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 12px 24px;
+            border-radius: 40px;
             cursor: pointer;
             z-index: 1000;
             font-weight: bold;
-            box-shadow: var(--card-shadow);
+            box-shadow: 0 8px 32px 0 var(--glass-glow);
         }
 
-        .theme-btn:hover {
-            transform: scale(1.05);
-            background: var(--accent-glow);
-            color: white;
+        .theme-toggle-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 12px 40px 0 var(--accent-cyan);
         }
 
+        /* هدر فوق‌بلوری */
         header {
             text-align: center;
-            padding: 80px 20px 40px;
-            background: var(--bg-glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border-glass);
-            margin-bottom: 40px;
+            padding: 90px 20px 50px;
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur-strength);
+            -webkit-backdrop-filter: var(--blur-strength);
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px var(--accent-color);
+            font-size: 2.6rem;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px var(--glass-glow);
         }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px 60px;
+            padding: 0 20px 80px;
         }
 
-        /* کارت‌های شیشه‌ای بلوری */
-        .glass-card {
-            background: var(--bg-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-glass);
-            border-radius: 24px;
-            padding: 35px;
-            margin-bottom: 35px;
-            box-shadow: var(--card-shadow);
+        /* کارت‌های شیشه‌ای شدیداً بلوری */
+        .glass-box {
+            background: var(--glass-card);
+            backdrop-filter: var(--blur-strength);
+            -webkit-backdrop-filter: var(--blur-strength);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.35);
+            position: relative;
+            overflow: hidden;
         }
 
-        .glass-card h2 {
-            color: var(--accent-color);
-            border-right: 4px solid var(--accent-color);
+        .glass-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+        }
+
+        .glass-box h2 {
+            color: var(--accent-cyan);
+            border-right: 5px solid var(--accent-cyan);
             padding-right: 15px;
             margin-top: 0;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
         }
 
-        /* گالری عکس‌ها */
-        .grid-gallery {
+        /* گالری تصاویر مولکولی و ساختاری */
+        .molecule-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
-            margin: 25px 0;
+            margin: 30px 0;
         }
 
-        .grid-gallery img {
+        .molecule-card {
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .molecule-card img {
             width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 16px;
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            height: 200px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 10px;
         }
 
-        .grid-gallery img:hover {
-            transform: scale(1.06);
-            border-color: var(--accent-color);
+        .molecule-card p {
+            margin: 10px 0 0;
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            font-weight: bold;
         }
 
-        /* دکمه‌های آکاردئونی اطلاعات بیشتر */
-        .more-info-btn {
-            background: linear-gradient(45deg, var(--accent-color), var(--accent-glow));
+        /* دکمه‌های آکاردئونی شیشه‌ای */
+        .glass-btn {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 12px;
+            padding: 14px 28px;
+            border-radius: 16px;
             cursor: pointer;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 20px;
             display: inline-block;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+            backdrop-filter: blur(5px);
         }
 
-        .more-info-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
+        .glass-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.5);
         }
 
-        .info-content {
+        .accordion-panel {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.3s ease;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            padding: 0 20px;
-            margin-top: 10px;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), padding 0.3s;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 0 25px;
+            margin-top: 15px;
+            border: 1px solid transparent;
         }
 
-        .info-content.active {
-            max-height: 1000px;
-            padding: 20px;
-            border: 1px solid var(--border-glass);
+        .accordion-panel.show {
+            max-height: 1200px;
+            padding: 25px;
+            border-color: var(--glass-border);
         }
 
-        /* جدول ویژگی مایعات */
-        .liquid-table {
+        /* جدول شیمیایی بلوری */
+        .glass-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background: rgba(0,0,0,0.1);
-            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
             overflow: hidden;
+            border: 1px solid var(--glass-border);
         }
 
-        .liquid-table th, .liquid-table td {
-            padding: 12px 15px;
+        .glass-table th, .glass-table td {
+            padding: 14px 18px;
             text-align: right;
-            border-bottom: 1px solid var(--border-glass);
+            border-bottom: 1px solid var(--glass-border);
         }
 
-        .liquid-table th {
-            background: rgba(0, 242, 254, 0.2);
-            color: var(--accent-color);
+        .glass-table th {
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--accent-cyan);
+            font-size: 1.05rem;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
             header h1 { font-size: 1.8rem; }
-            .glass-card { padding: 20px; }
+            .glass-box { padding: 22px; }
         }
     </style>
 </head>
 <body>
 
-    <button class="theme-btn" onclick="toggleTheme()">✨ تغییر تم (روشن / تاریک)</button>
+    <button class="theme-toggle-btn" onclick="toggleTheme()">✨ حالت تم شیشه‌ای</button>
 
     <header>
-        <h1>🔬 دانشنامه جامع فیزیک و شیمی مایعات</h1>
-        <p>کاوش در جهان پیوندهای مولکولی، تنش سطحی و گرانروی مایعات مختلف</p>
+        <h1>🔬 دانشنامه جامع ساختار دقیق مولکولی مایعات</h1>
+        <p>بررسی تخصصی فیزیک شیمیایی آب، جیوه، الکل، پیوندهای کووالانسی و تنش سطحی</p>
     </header>
 
     <div class="container">
 
-        <!-- بخش ۱: ساختار مولکولی و آب -->
-        <div class="glass-card">
-            <h2>۱. آب ($H_2O$) و معجزه پیوند هیدروژنی</h2>
-            <p>آب فراوان‌ترین مایع روی زمین است، اما رفتار فیزیکی آن اصلاً معمولی نیست! ساختار قطبی مولکول آب باعث می‌شود اتم‌های هیدروژنِ یک مولکول، اتم اکسیژنِ مولکول مجاور را جذب کنند و شبکه‌ای محکم از پیوندهای هیدروژنی بسازند.</p>
+        <!-- بخش ۱: ساختار دقیق شیمیایی آب -->
+        <div class="glass-box">
+            <h2>۱. ساختار دقیق هندسی و شیمیایی مولکول آب ($H_2O$)</h2>
+            <p>مولکول آب شامل یک اتم اکسیژن مرکزی با دو جفت الکترون ناپیوندی و دو اتم هیدروژن است. زاویه پیوندی دقیق بین اتصالات هیدروژن-اکسیژن برابر با <strong>۱۰۴.۵ درجه</strong> است. این ساختار خمیده باعث ایحاد قطبیت شدید و شبکه پیوندهای هیدروژنی متراکم می‌شود.</p>
 
-            <div class="grid-gallery">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Water_molecule_3D.svg/640px-Water_molecule_3D.svg.png" alt="مولکول ۳ بعدی آب">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Water_drop_on_a_leaf.JPG/640px-Water_drop_on_a_leaf.JPG" alt="قطره آب روی برگ">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Water_strider.jpg/640px-Water_strider.jpg" alt="حشره روی آب">
+            <div class="molecule-grid">
+                <div class="molecule-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Water_molecule_dimensions.svg/640px-Water_molecule_dimensions.svg.png" alt="ساختار دقیق هندسی مولکول آب">
+                    <p>زاویه‌ها و طول پیوند دقیق $H_2O$</p>
+                </div>
+                <div class="molecule-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Water_molecule_3D.svg/640px-Water_molecule_3D.svg.png" alt="مدل سه بعدی مولکول آب">
+                    <p>مدل فضاپرکن ۳ بعدی اوربیتالی</p>
+                </div>
+                <div class="molecule-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/3D_model_hydrogen_bonds_in_ice.png/640px-3D_model_hydrogen_bonds_in_ice.png" alt="شبکه پیوند هیدروژنی">
+                    <p>شبکه پیوندهای هیدروژنی بین مولکولی</p>
+                </div>
             </div>
 
-            <button class="more-info-btn" onclick="toggleInfo('info1')">📌 اطلاعات بیشتر درباره آب</button>
-            <div id="info1" class="info-content">
-                <p><strong>ویژگی‌های شگفت‌انگیز آب:</strong></p>
+            <button class="glass-btn" onclick="toggleAccordion('panel1')">📌 جزئیات آنالیز شیمیایی و اوربیتالی</button>
+            <div id="panel1" class="accordion-panel">
                 <ul>
-                    <li><strong>تنش سطحی بالا:</strong> آب بعد از جیوه، بالاترین تنش سطحی را در میان مایعات معمولی دارد (حدود ۷۲.۸ میلی‌نیوتون بر متر در دمای ۲۰ درجه).</li>
-                    <li><strong>انبساط غیرعادی:</strong> آب برعکس بقیه مایعات، هنگام منجمد شدن حجمش زیادتر و چگالی‌اش کمتر می‌شود؛ به همین دلیل یخ روی آب شناور می‌ماند!</li>
-                    <li><strong>گرمای ویژه بالا:</strong> آب به سختی داغ و به سختی سرد می‌شود، که این ویژگی دمای کره زمین را متعادل نگه می‌دارد.</li>
+                    <li><strong>هیبریدیزاسیون:</strong> اتم اکسیژن دارای هیبرید $sp^3$ است که حالت چهاروجهی نامنظم ایجاد می‌کند.</li>
+                    <li><strong>گشتاور دو قطبی:</strong> گشتاور قطبی بالای ۱.۸۵ دبی (Debye) باعث قدرت بالای حلالیت آب می‌شود.</li>
+                    <li><strong>چگالی حالات پیوندی:</strong> نیروهای بین‌مولکولی هیدروژنی علت اصلی نقطه جوش بالای آب ($100^\circ C$) نسبت به جرم مولکولی آن هستند.</li>
                 </ul>
             </div>
         </div>
 
-        <!-- بخش ۲: تنش سطحی -->
-        <div class="glass-card">
-            <h2>۲. تنش سطحی (Surface Tension) چیست؟</h2>
-            <p>تنش سطحی نیرویی است که باعث می‌شود سطح آزاد یک مایع مانند یک پوسته الاستیک کشسان عمل کند. مولکول‌های درون مایع از همه طرف جذب می‌شوند، اما مولکول‌های روی سطح فقط از سمت داخل و طرفین جذب می‌شوند؛ این نابرابری نیرو، لایه سطحی فشرده‌ای ایجاد می‌کند.</p>
+        <!-- بخش ۲: تنش سطحی و نیروهای کوهسیو -->
+        <div class="glass-box">
+            <h2>۲. فیزیک تنش سطحی و نیروهای هم‌چسبی (Cohesion)</h2>
+            <p>تنش سطحی حاصل عدم تقارن نیروهای جذبی وان‌دروالسی و هیدروژنی در سطح مایع است. مولکول‌های عمق مایع از همه جهات تحت بردار برآیند صفر قرار دارند، در حالی که برآیند نیروی مولکول‌های سطح به سمت داخل ظرف است.</p>
 
-            <div class="grid-gallery">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Water_drop_impact_on_water_surface.jpg/640px-Water_drop_impact_on_water_surface.jpg" alt="تنش سطحی آب">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Paper_clip_floating_on_water.jpg/640px-Paper_clip_floating_on_water.jpg" alt="گیره کاغذ شناور روی آب">
+            <div class="molecule-grid">
+                <div class="molecule-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Water_drop_impact_on_water_surface.jpg/640px-Water_drop_impact_on_water_surface.jpg" alt="تنش سطحی آب">
+                    <p>انرژی پتانسیل سطحی قطره</p>
+                </div>
+                <div class="molecule-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Water_strider.jpg/640px-Water_strider.jpg" alt="تنش سطحی و حشرات">
+                    <p>توزیع جرم روی پوسته الاستیک آب</p>
+                </div>
             </div>
 
-            <button class="more-info-btn" onclick="toggleInfo('info2')">📌 اطلاعات بیشتر و فرمول‌های تنش سطحی</button>
-            <div id="info2" class="info-content">
-                <p>تنش سطحی با نماد γ (گاما) یا σ (سیگما) نشان داده می‌شود و فرمول آن برابر است با نسبت نیرو به طول لبه:</p>
-                <p style="text-align: center; font-weight: bold; color: var(--accent-color);">$\gamma = \frac{F}{L}$</p>
-                <p>عوامل موثر بر تنش سطحی:</p>
-                <ul>
-                    <li><strong>دما:</strong> با افزایش دما، انرژی جنبشی مولکول‌ها افزایش یافته و تنش سطحی کاهش می‌یابد.</li>
-                    <li><strong>مواد شوینده (Surfactants):</strong> صابون و مایع ظرفشویی پیوندهای بین مولکولی را می‌شکنند و تنش سطحی آب را به شدت کم می‌کنند.</li>
-                </ul>
+            <button class="glass-btn" onclick="toggleAccordion('panel2')">📌 ریاضیات و فرمول تنش سطحی</button>
+            <div id="panel2" class="accordion-panel">
+                <p>فرمول محاسبه کار انجام شده برای افزایش سطح مایع:</p>
+                <p style="text-align: center; font-size: 1.2rem; color: var(--accent-cyan); font-weight: bold;">$W = \gamma \cdot \Delta A$</p>
+                <p>که در آن $\gamma$ ضریب تنش سطحی بر حسب نیوتون بر متر ($N/m$) و $\Delta A$ تغییرات مساحت سطح است.</p>
             </div>
         </div>
 
-        <!-- بخش ۳: بررسی مایعات مختلف -->
-        <div class="glass-card">
-            <h2>۳. مقایسه جامع مایعات مختلف</h2>
-            <p>مایعات رفتارهای کاملاً متفاوتی بر اساس ساختار شیمیایی و ویسکوزیته (گرانروی) خود نشان می‌دهند:</p>
+        <!-- بخش ۳: دانشنامه شیمیایی سایر مایعات -->
+        <div class="glass-box">
+            <h2>۳. آنالیز مقایسه‌ای ساختار مولکولی مایعات مختلف</h2>
+            <p>خواص فیزیکی مایعات کاملاً وابسته به پیوند درون‌مولکولی، جرم مولی و قطبیت آن‌هاست:</p>
 
-            <div class="grid-gallery">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Pouring_liquid_mercury.jpg/640px-Pouring_liquid_mercury.jpg" alt="جیوه مایع">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Olive_oil_clove_garlic.jpg/640px-Olive_oil_clove_garlic.jpg" alt="روغن زیتون">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Honey_dripping_from_a_wooden_honey_dipper.jpg/640px-Honey_dripping_from_a_wooden_honey_dipper.jpg" alt="عسل و گرانروی">
+            <div class="molecule-grid">
+                <div class="molecule-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Ethanol-3D-balls.png/640px-Ethanol-3D-balls.png" alt="ساختار مولکول الکل اتانول">
+                    <p>ساختار مولکولی اتانول ($C_2H_5OH$)</p>
+                </div>
+                <div class="molecule-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Mercury_atom.svg/640px-Mercury_atom.svg.png" alt="آرایش الکترونی اتم جیوه">
+                    <p>آرایش الکترونی و لایه‌ای اتم جیوه ($Hg$)</p>
+                </div>
             </div>
 
-            <button class="more-info-btn" onclick="toggleInfo('info3')">📌 مشاهده جدول مقایسه‌ای مایعات</button>
-            <div id="info3" class="info-content">
-                <table class="liquid-table">
+            <button class="glass-btn" onclick="toggleAccordion('panel3')">📌 جدول مقایسه پارامترهای فیزیک شیمیایی</button>
+            <div id="panel3" class="accordion-panel">
+                <table class="glass-table">
                     <thead>
                         <tr>
-                            <th>نام مایع</th>
-                            <th>تنش سطحی (mN/m)</th>
-                            <th>چگالی (g/cm³)</th>
-                            <th>ویژگی خاص</th>
+                            <th>مایع</th>
+                            <th>فرمول / نماد</th>
+                            <th>تنش سطحی ($mN/m$)</th>
+                            <th>جرم مولکولی ($g/mol$)</th>
+                            <th>نوع پیوند غالب</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>جیوه (Hg)</td>
+                            <td>جیوه</td>
+                            <td>$Hg$</td>
                             <td>۴۸۶.۵</td>
-                            <td>۱۳.۵۳</td>
-                            <td>تنها فلز مایع، تنش سطحی فوق‌العاده بالا</td>
+                            <td>۲۰۰.۵۹</td>
+                            <td>فلزی (الکترون آزاد)</td>
                         </tr>
                         <tr>
-                            <td>آب ($H_2O$)</td>
+                            <td>آب خالص</td>
+                            <td>$H_2O$</td>
                             <td>۷۲.۸</td>
-                            <td>۱.۰۰</td>
-                            <td>قطبیت بالا و پیوند هیدروژنی</td>
+                            <td>۱۸.۰۱</td>
+                            <td>هیدروژنی قطبی</td>
                         </tr>
                         <tr>
-                            <td>روغن زیتون</td>
-                            <td>۳۲.۰</td>
-                            <td>۰.۹۲</td>
-                            <td>ناقطبی، جذب‌پذیری پایین با آب</td>
-                        </tr>
-                        <tr>
-                            <td>اتانول (الکل)</td>
+                            <td>اتانول</td>
+                            <td>$C_2H_5OH$</td>
                             <td>۲۲.۳</td>
-                            <td>۰.۷۸</td>
-                            <td>تبخیر سریع و تنش سطحی پایین</td>
+                            <td>۴۶.۰۷</td>
+                            <td>هیدروژنی ضعیف / واندروالسی</td>
                         </tr>
                         <tr>
-                            <td>عسل</td>
-                            <td>~۶۰.۰</td>
-                            <td>۱.۴۲</td>
-                            <td>ویسکوزیته (گرانروی) بسیار بالا</td>
+                            <td>استون</td>
+                            <td>$C_3H_6O$</td>
+                            <td>۲۳.۷</td>
+                            <td>۵۸.۰۸</td>
+                            <td>دو قطبی - دو قطبی</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- بخش اختصاصی جیوه -->
-        <div class="glass-card" style="border-right: 6px solid #ff4757;">
-            <h2 style="color: #ff4757;">۴. بخش ویژه: جیوه (Mercury)؛ مایع فلزی عجیب</h2>
-            <p>جیوه با نماد شیمیایی Hg و عدد اتمی ۸۰، تنها فلزی است که در شرایط استاندارد دما و فشار به حالت مایع وجود دارد. نیروهای همچسبی بین اتم‌های جیوه به قدری قوی است که قطرات آن کاملاً گرد شده و به هیچ وجه شیشه یا دست را خیس نمی‌کنند!</p>
+        <!-- بخش ۴: جیوه -->
+        <div class="glass-box" style="border-left: 4px solid var(--accent-cyan);">
+            <h2>۴. جیوه ($Hg$)؛ رفتار فلز مایع و پیوند فلزی غیرعادی</h2>
+            <p>جیوه تنها فلز مایع در دمای اتاق است. به دلیل انقباض نسبیتی در لایه‌های الکترونی ۶s، الکترون‌ها به هسته نزدیک‌تر شده و تمایل کمی برای به اشتراک‌گذاری الکترون با اتم‌های مجاور دارند؛ این امر باعث نقطه ذوب بسیار پایین ($-۳۸.۸^\circ C$) می‌شود.</p>
 
-            <div class="grid-gallery">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Liquid_Mercury.jpg/640px-Liquid_Mercury.jpg" alt="قطرات کروی جیوه">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mercury_barometer_detail.jpg/640px-Mercury_barometer_detail.jpg" alt="فشارسنج جیوه‌ای">
+            <div class="molecule-grid">
+                <div class="molecule-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Pouring_liquid_mercury.jpg/640px-Pouring_liquid_mercury.jpg" alt="شارش جیوه مایع">
+                    <p>انسجام شدید و قطرات کروی جیوه</p>
+                </div>
+                <div class="molecule-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Liquid_Mercury.jpg/640px-Liquid_Mercury.jpg" alt="قطرات جیوه روی سطح">
+                    <p>نیروی دافعه با سطوح شیشه‌ای</p>
+                </div>
             </div>
 
-            <button class="more-info-btn" onclick="toggleInfo('info4')">📌 رازهای شگفت‌انگیز جیوه</button>
-            <div id="info4" class="info-content">
+            <button class="glass-btn" onclick="toggleAccordion('panel4')">📌 رازهای ترمودینامیکی جیوه</button>
+            <div id="panel4" class="accordion-panel">
                 <ul>
-                    <li><strong>شناور شدن آهن روی جیوه:</strong> چون چگالی جیوه ۱۳.۵ برابر آب است، حتی یک وزنه سنگین آهنی روی سطح جیوه شناور می‌ماند!</li>
-                    <li><strong>سطح محدب در لوله موئین:</strong> برعکس آب که در لوله‌های باریک سطح مقعر (گود) می‌سازد، جیوه به دلیل تنش سطحی شدید، سطح محدب (برآمده) می‌سازد.</li>
-                    <li><strong>سمیت:</strong> بخارات جیوه شدیداً سمی است و می‌تواند به سیستم عصبی آسیب بزند.</li>
+                    <li><strong>عدم خیس‌کنندگی:</strong> زاویه تماس جیوه با شیشه بیش از ۱۴۰ درجه است که نشان‌دهنده غالب بودن نیروی هم‌چسبی بر دگرچسبی است.</li>
+                    <li><strong>چگالی بالا:</strong> چگالی $13.53 g/cm^3$ باعث می‌شود فلزاتی مانند سرب و آهن روی آن شناور بمانند.</li>
                 </ul>
             </div>
         </div>
@@ -330,19 +388,19 @@
     </div>
 
     <script>
-        // آکاردئون اطلاعات بیشتر
-        function toggleInfo(id) {
-            const content = document.getElementById(id);
-            content.classList.toggle('active');
+        // کنترل دکمه‌های آکاردئونی
+        function toggleAccordion(id) {
+            const panel = document.getElementById(id);
+            panel.classList.toggle('show');
         }
 
-        // تغییر تم (تاریک / روشن)
+        // تغییر حالت تم شیشه‌ای
         function toggleTheme() {
-            const currentTheme = document.body.getAttribute('data-theme');
-            if (currentTheme === 'light') {
-                document.body.removeAttribute('data-theme');
+            const body = document.body;
+            if (body.getAttribute('data-theme') === 'light') {
+                body.removeAttribute('data-theme');
             } else {
-                document.body.setAttribute('data-theme', 'light');
+                body.setAttribute('data-theme', 'light');
             }
         }
     </script>
