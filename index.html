@@ -3,227 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دانشنامه جامع مایعات، تنش سطحی و جیوه</title>
-    <meta name="description" content="دانشنامه جامع بررسی فیزیک مایعات، تنش سطحی آب، پیوندهای هیدروژنی و ویژگی‌های شگفت‌انگیز جیوه به همراه انیمیشن و تصاویر.">
-    <meta name="keywords" content="تنش سطحی, آب, جیوه, فیزیک مایعات, دانشنامه آب, پیوند هیدروژنی">
-    
-    <!-- متاتگ گوگل -->
+    <title>دانشنامه جامع فیزیک مایعات و ساختار مولکولی</title>
+    <meta name="description" content="مرجع جامع بررسی فیزیک مایعات، تنش سطحی، ساختار مولکولی آب، جیوه، الکل و روغن به همراه انیمیشن و افکت‌های بلوری شیشه‌ای.">
     <meta name="google-site-verification" content="google7586a598284eb5c" />
 
     <style>
         :root {
-            --bg-color: #f0f8ff;
-            --card-bg: #ffffff;
-            --text-color: #2c3e50;
-            --accent-color: #00838f;
-            --header-bg: linear-gradient(135deg, #0288d1, #26c6da);
-            --mercury-bg: linear-gradient(135deg, #37474f, #78909c);
-            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+            --bg-glass: rgba(255, 255, 255, 0.15);
+            --border-glass: rgba(255, 255, 255, 0.25);
+            --text-color: #ffffff;
+            --accent-color: #00f2fe;
+            --accent-glow: #4facfe;
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
-        [data-theme="dark"] {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --accent-color: #4dd0e1;
-            --header-bg: linear-gradient(135deg, #004ecb, #00838f);
-            --mercury-bg: linear-gradient(135deg, #1c2327, #37474f);
-            --shadow: 0 10px 25px rgba(0,0,0,0.5);
+        [data-theme="light"] {
+            --bg-glass: rgba(255, 255, 255, 0.75);
+            --border-glass: rgba(255, 255, 255, 0.4);
+            --text-color: #1a202c;
+            --accent-color: #0077b6;
+            --accent-glow: #00b4d8;
+            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
         }
 
         * {
             box-sizing: border-box;
-            transition: background-color 0.4s, color 0.4s;
+            transition: all 0.3s ease;
         }
 
         body {
             font-family: 'Tahoma', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
             margin: 0;
             padding: 0;
-            line-height: 1.8;
+            color: var(--text-color);
+            line-height: 1.9;
+            /* پس‌زمینه علمی و پیشرفته */
+            background: linear-gradient(rgba(10, 15, 30, 0.85), rgba(10, 15, 30, 0.85)), 
+                        url('https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/abstract-science-molecule-background-graphic-art.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
         }
 
-        /* دکمه تغییر نور (تم) */
-        .theme-toggle {
+        /* دکمه تغییر نور */
+        .theme-btn {
             position: fixed;
             top: 20px;
             left: 20px;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-color);
+            padding: 12px 22px;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: var(--shadow);
             z-index: 1000;
             font-weight: bold;
+            box-shadow: var(--card-shadow);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.05);
+            background: var(--accent-glow);
+            color: white;
         }
 
         header {
-            background: var(--header-bg);
-            color: white;
             text-align: center;
-            padding: 60px 20px;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            animation: fadeInDown 1s ease-in-out;
+            padding: 80px 20px 40px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-glass);
+            margin-bottom: 40px;
         }
 
         header h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
+            text-shadow: 0 0 15px var(--accent-color);
         }
 
         .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
         }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
-            animation: fadeInUp 0.8s ease-in-out;
+        /* کارت‌های شیشه‌ای بلوری */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: var(--card-shadow);
         }
 
-        .card h2 {
+        .glass-card h2 {
             color: var(--accent-color);
-            border-right: 5px solid var(--accent-color);
-            padding-right: 12px;
+            border-right: 4px solid var(--accent-color);
+            padding-right: 15px;
             margin-top: 0;
+            font-size: 1.6rem;
         }
 
-        .gallery {
+        /* گالری عکس‌ها */
+        .grid-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
-            margin: 20px 0;
+            margin: 25px 0;
         }
 
-        .gallery img {
+        .grid-gallery img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
-            border-radius: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 16px;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: var(--shadow);
+        .grid-gallery img:hover {
+            transform: scale(1.06);
+            border-color: var(--accent-color);
         }
 
-        /* بخش اختصاصی جیوه */
-        .mercury-section {
-            background: var(--mercury-bg);
+        /* دکمه‌های آکاردئونی اطلاعات بیشتر */
+        .more-info-btn {
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-glow));
             color: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin-top: 40px;
-            box-shadow: var(--shadow);
-        }
-
-        .mercury-section h2 {
-            color: #eceff1;
-            border-right-color: #cfd8dc;
-        }
-
-        .badge {
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
             display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
         }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .more-info-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .info-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.3s ease;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 0 20px;
+            margin-top: 10px;
+        }
+
+        .info-content.active {
+            max-height: 1000px;
+            padding: 20px;
+            border: 1px solid var(--border-glass);
+        }
+
+        /* جدول ویژگی مایعات */
+        .liquid-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .liquid-table th, .liquid-table td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .liquid-table th {
+            background: rgba(0, 242, 254, 0.2);
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .glass-card { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <button class="theme-toggle" onclick="toggleTheme()">🌓 تغییر نور (روز / شب)</button>
+    <button class="theme-btn" onclick="toggleTheme()">✨ تغییر تم (روشن / تاریک)</button>
 
     <header>
-        <h1>🌊 دانشنامه جامع مایعات و تنش سطحی</h1>
-        <p>سفری علمی به جهان مولکول‌ها، پدیده‌های فیزیکی و مایعات شگفت‌انگیز</p>
+        <h1>🔬 دانشنامه جامع فیزیک و شیمی مایعات</h1>
+        <p>کاوش در جهان پیوندهای مولکولی، تنش سطحی و گرانروی مایعات مختلف</p>
     </header>
 
     <div class="container">
 
-        <!-- بخش اول: آب -->
-        <div class="card">
-            <h2>۱. آب؛ مایع حیات‌بخش و ساختار آن</h2>
-            <p>آب ($H_2O$) یکی از منحصر‌به‌فردترین مواد روی زمین است. هر مولکول آب از یک اتم اکسیژن و دو اتم هیدروژن تشکیل شده که با زاویه‌ای حدود ۱۰۴.۵ درجه به هم متصل شده‌اند. این ساختار قطبی باعث ایجاد <strong>پیوندهای هیدروژنی</strong> قوی بین مولکول‌ها می‌شود.</p>
-            
-            <div class="gallery">
-                <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=600&q=80" alt="قطره آب">
-                <img src="https://images.unsplash.com/photo-1508873696983-2df515122519?auto=format&fit=crop&w=600&q=80" alt="موج آب">
+        <!-- بخش ۱: ساختار مولکولی و آب -->
+        <div class="glass-card">
+            <h2>۱. آب ($H_2O$) و معجزه پیوند هیدروژنی</h2>
+            <p>آب فراوان‌ترین مایع روی زمین است، اما رفتار فیزیکی آن اصلاً معمولی نیست! ساختار قطبی مولکول آب باعث می‌شود اتم‌های هیدروژنِ یک مولکول، اتم اکسیژنِ مولکول مجاور را جذب کنند و شبکه‌ای محکم از پیوندهای هیدروژنی بسازند.</p>
+
+            <div class="grid-gallery">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Water_molecule_3D.svg/640px-Water_molecule_3D.svg.png" alt="مولکول ۳ بعدی آب">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Water_drop_on_a_leaf.JPG/640px-Water_drop_on_a_leaf.JPG" alt="قطره آب روی برگ">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Water_strider.jpg/640px-Water_strider.jpg" alt="حشره روی آب">
+            </div>
+
+            <button class="more-info-btn" onclick="toggleInfo('info1')">📌 اطلاعات بیشتر درباره آب</button>
+            <div id="info1" class="info-content">
+                <p><strong>ویژگی‌های شگفت‌انگیز آب:</strong></p>
+                <ul>
+                    <li><strong>تنش سطحی بالا:</strong> آب بعد از جیوه، بالاترین تنش سطحی را در میان مایعات معمولی دارد (حدود ۷۲.۸ میلی‌نیوتون بر متر در دمای ۲۰ درجه).</li>
+                    <li><strong>انبساط غیرعادی:</strong> آب برعکس بقیه مایعات، هنگام منجمد شدن حجمش زیادتر و چگالی‌اش کمتر می‌شود؛ به همین دلیل یخ روی آب شناور می‌ماند!</li>
+                    <li><strong>گرمای ویژه بالا:</strong> آب به سختی داغ و به سختی سرد می‌شود، که این ویژگی دمای کره زمین را متعادل نگه می‌دارد.</li>
+                </ul>
             </div>
         </div>
 
-        <!-- بخش دوم: تنش سطحی -->
-        <div class="card">
+        <!-- بخش ۲: تنش سطحی -->
+        <div class="glass-card">
             <h2>۲. تنش سطحی (Surface Tension) چیست؟</h2>
-            <p>تنش سطحی یک ویژگی فیزیکی در مایعات است که باعث می‌شود لایه بیرونی مایع مانند یک پوسته الاستیک و نامرئی عمل کند. این پدیده به دلیل کشش نامتوازن مولکول‌های سطح مایع به سمت داخل ایجاد می‌شود.</p>
-            <p>💡 <strong>مثال‌های ملموس:</strong></p>
-            <ul>
-                <li>شناور ماندن حشرات (مانند آب‌پیمایان) روی سطح آب بدون غرق شدن.</li>
-                <li>گرد و کروی شدن قطرات آب روی برگ درختان یا شیشه ماشین.</li>
-                <li>شناور ماندن یک سوزن یا گیره کاغذ روی کاسه آب!</li>
-            </ul>
+            <p>تنش سطحی نیرویی است که باعث می‌شود سطح آزاد یک مایع مانند یک پوسته الاستیک کشسان عمل کند. مولکول‌های درون مایع از همه طرف جذب می‌شوند، اما مولکول‌های روی سطح فقط از سمت داخل و طرفین جذب می‌شوند؛ این نابرابری نیرو، لایه سطحی فشرده‌ای ایجاد می‌کند.</p>
+
+            <div class="grid-gallery">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Water_drop_impact_on_water_surface.jpg/640px-Water_drop_impact_on_water_surface.jpg" alt="تنش سطحی آب">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Paper_clip_floating_on_water.jpg/640px-Paper_clip_floating_on_water.jpg" alt="گیره کاغذ شناور روی آب">
+            </div>
+
+            <button class="more-info-btn" onclick="toggleInfo('info2')">📌 اطلاعات بیشتر و فرمول‌های تنش سطحی</button>
+            <div id="info2" class="info-content">
+                <p>تنش سطحی با نماد γ (گاما) یا σ (سیگما) نشان داده می‌شود و فرمول آن برابر است با نسبت نیرو به طول لبه:</p>
+                <p style="text-align: center; font-weight: bold; color: var(--accent-color);">$\gamma = \frac{F}{L}$</p>
+                <p>عوامل موثر بر تنش سطحی:</p>
+                <ul>
+                    <li><strong>دما:</strong> با افزایش دما، انرژی جنبشی مولکول‌ها افزایش یافته و تنش سطحی کاهش می‌یابد.</li>
+                    <li><strong>مواد شوینده (Surfactants):</strong> صابون و مایع ظرفشویی پیوندهای بین مولکولی را می‌شکنند و تنش سطحی آب را به شدت کم می‌کنند.</li>
+                </ul>
+            </div>
         </div>
 
-        <!-- بخش سوم: آزمایش‌های جذاب -->
-        <div class="card">
-            <h2>۳. خلاصه آزمایش‌های جذاب با آب</h2>
-            <p>شما می‌توانید تنش سطحی آب را در خانه با روش‌های زیر آزمایش کنید:</p>
-            <ol>
-                <li><strong>آزمایش فلفل و صابون:</strong> کمی فلفل سیاه روی کاسه آب بپاشید. با زدن یک قطره مایع ظرفشویی به انگشتتان، فلفل‌ها به سرعت به اطراف فرار می‌کنند! (صابون تنش سطحی آب را می‌شکند).</li>
-                <li><strong>آزمایش سکه و قطره‌چکان:</strong> بررسی کنید چند قطره آب روی یک سکه جا می‌گیرد قبل از اینکه بریزد!</li>
-            </ol>
+        <!-- بخش ۳: بررسی مایعات مختلف -->
+        <div class="glass-card">
+            <h2>۳. مقایسه جامع مایعات مختلف</h2>
+            <p>مایعات رفتارهای کاملاً متفاوتی بر اساس ساختار شیمیایی و ویسکوزیته (گرانروی) خود نشان می‌دهند:</p>
+
+            <div class="grid-gallery">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Pouring_liquid_mercury.jpg/640px-Pouring_liquid_mercury.jpg" alt="جیوه مایع">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Olive_oil_clove_garlic.jpg/640px-Olive_oil_clove_garlic.jpg" alt="روغن زیتون">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Honey_dripping_from_a_wooden_honey_dipper.jpg/640px-Honey_dripping_from_a_wooden_honey_dipper.jpg" alt="عسل و گرانروی">
+            </div>
+
+            <button class="more-info-btn" onclick="toggleInfo('info3')">📌 مشاهده جدول مقایسه‌ای مایعات</button>
+            <div id="info3" class="info-content">
+                <table class="liquid-table">
+                    <thead>
+                        <tr>
+                            <th>نام مایع</th>
+                            <th>تنش سطحی (mN/m)</th>
+                            <th>چگالی (g/cm³)</th>
+                            <th>ویژگی خاص</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>جیوه (Hg)</td>
+                            <td>۴۸۶.۵</td>
+                            <td>۱۳.۵۳</td>
+                            <td>تنها فلز مایع، تنش سطحی فوق‌العاده بالا</td>
+                        </tr>
+                        <tr>
+                            <td>آب ($H_2O$)</td>
+                            <td>۷۲.۸</td>
+                            <td>۱.۰۰</td>
+                            <td>قطبیت بالا و پیوند هیدروژنی</td>
+                        </tr>
+                        <tr>
+                            <td>روغن زیتون</td>
+                            <td>۳۲.۰</td>
+                            <td>۰.۹۲</td>
+                            <td>ناقطبی، جذب‌پذیری پایین با آب</td>
+                        </tr>
+                        <tr>
+                            <td>اتانول (الکل)</td>
+                            <td>۲۲.۳</td>
+                            <td>۰.۷۸</td>
+                            <td>تبخیر سریع و تنش سطحی پایین</td>
+                        </tr>
+                        <tr>
+                            <td>عسل</td>
+                            <td>~۶۰.۰</td>
+                            <td>۱.۴۲</td>
+                            <td>ویسکوزیته (گرانروی) بسیار بالا</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- بخش اختصاصی جیوه -->
-        <div class="mercury-section">
-            <span class="badge">عنصر شماره ۸۰ (Hg)</span>
-            <h2>🧪 بخش اختصاصی: جیوه (Mercury)؛ مایعی از جنس فلز!</h2>
-            <p>جیوه تنها فلزی است که در دمای اتاق به حالت مایع باقی می‌ماند. این عنصر شگفت‌انگیز دارای ویژگی‌های بسیار خاصی است:</p>
-            
-            <ul>
-                <li><strong>تنش سطحی فوق‌العاده بالا:</strong> تنش سطحی جیوه حدود ۶ برابر آب است! به همین دلیل قطرات جیوه کاملاً کروی باقی می‌مانند و اصلاً سطوح را خیس نمی‌کنند.</li>
-                <li><strong>چگالی بسیار بالا:</strong> چگالی جیوه ۱۳.۶ برابر آب است. یعنی یک لیتر جیوه حدود ۱۳.۶ کیلوگرم وزن دارد! حتی وزنه آهنی هم روی جیوه شناور می‌ماند.</li>
-                <li><strong>رفتار لوله‌های موئین:</strong> برعکس آب که در لوله‌های باریک بالا می‌رود، سطح جیوه پایین می‌رود و محدب می‌شود.</li>
-            </ul>
+        <div class="glass-card" style="border-right: 6px solid #ff4757;">
+            <h2 style="color: #ff4757;">۴. بخش ویژه: جیوه (Mercury)؛ مایع فلزی عجیب</h2>
+            <p>جیوه با نماد شیمیایی Hg و عدد اتمی ۸۰، تنها فلزی است که در شرایط استاندارد دما و فشار به حالت مایع وجود دارد. نیروهای همچسبی بین اتم‌های جیوه به قدری قوی است که قطرات آن کاملاً گرد شده و به هیچ وجه شیشه یا دست را خیس نمی‌کنند!</p>
 
-            <div class="gallery">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Pouring_liquid_mercury.jpg/800px-Pouring_liquid_mercury.jpg" alt="مایع جیوه">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Liquid_Mercury.jpg/800px-Liquid_Mercury.jpg" alt="قطره‌های گرد جیوه">
+            <div class="grid-gallery">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Liquid_Mercury.jpg/640px-Liquid_Mercury.jpg" alt="قطرات کروی جیوه">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Mercury_barometer_detail.jpg/640px-Mercury_barometer_detail.jpg" alt="فشارسنج جیوه‌ای">
+            </div>
+
+            <button class="more-info-btn" onclick="toggleInfo('info4')">📌 رازهای شگفت‌انگیز جیوه</button>
+            <div id="info4" class="info-content">
+                <ul>
+                    <li><strong>شناور شدن آهن روی جیوه:</strong> چون چگالی جیوه ۱۳.۵ برابر آب است، حتی یک وزنه سنگین آهنی روی سطح جیوه شناور می‌ماند!</li>
+                    <li><strong>سطح محدب در لوله موئین:</strong> برعکس آب که در لوله‌های باریک سطح مقعر (گود) می‌سازد، جیوه به دلیل تنش سطحی شدید، سطح محدب (برآمده) می‌سازد.</li>
+                    <li><strong>سمیت:</strong> بخارات جیوه شدیداً سمی است و می‌تواند به سیستم عصبی آسیب بزند.</li>
+                </ul>
             </div>
         </div>
 
     </div>
 
     <script>
+        // آکاردئون اطلاعات بیشتر
+        function toggleInfo(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle('active');
+        }
+
+        // تغییر تم (تاریک / روشن)
         function toggleTheme() {
             const currentTheme = document.body.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
+            if (currentTheme === 'light') {
                 document.body.removeAttribute('data-theme');
             } else {
-                document.body.setAttribute('data-theme', 'dark');
+                document.body.setAttribute('data-theme', 'light');
             }
         }
     </script>
